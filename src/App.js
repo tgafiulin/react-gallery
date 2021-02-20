@@ -1,4 +1,4 @@
-import Users from 'components/pages/home/Users/Users'; 
+import UsersList from 'components/pages/home/UsersList/UsersList'; 
 import User from 'components/pages/user/User/User';
 
 import {
@@ -14,7 +14,8 @@ function App() {
                 <div className="container">
                   <Switch>
                     <Route exact path="/">
-                      <Users />
+                      <h1>Users</h1>
+                      <UsersList />
                     </Route>
                     <Route path="/user/:id">
                       <User />

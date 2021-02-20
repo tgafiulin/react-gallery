@@ -1,0 +1,14 @@
+.users-list-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.users-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    @media (max-width: 767px) {
+        min-width: 500px;
+    }
+}
