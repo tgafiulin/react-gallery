@@ -1,17 +1,23 @@
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchAlbums } from 'app/reducers/albums/albums'
+import { fetchAlbums, toggleLoading } from 'app/reducers/albums/albums'
 import Loader from 'components/common/Loader/Loader'
-import Album from 'components/pages/user/Album/Album'
+import AlbumList from 'components/pages/user/AlbumList/AlbumList'
 
 function User () {
     const dispatch = useDispatch();
-    const {loading, albums} = useSelector(state => state.albums);
     const { id } = useParams();
+    const albumsInfo = useSelector(state => state.albums.albumsInfo)[id];
+    const loading = useSelector(state => state.albums.loading);
 
     useEffect(() => {
-        dispatch(fetchAlbums(id));
+        dispatch(fetchAlbums({
+            dispatch: dispatch,
+            id: id
+        }));
+
+        return () => dispatch(toggleLoading());
     }, [])
 
     return <>
@@ -21,7 +27,7 @@ function User () {
         :
             <div className="albums-list">
                 {
-                    albums[id].map((album) => <Album key={album.id} album={album} />)
+                    albumsInfo.map((album) => <AlbumList key={album.id} album={album} />)
                 }
             </div>
         }   

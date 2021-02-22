@@ -20,6 +20,9 @@ const usersSlice = createSlice({
 
     },
     extraReducers: {
+        [fetchUsers.pending]: (state) => {
+            state.loading = true;
+        },
         [fetchUsers.fulfilled]: (state, action) => {
             state.users = action.payload.users;
             state.loading = false;
