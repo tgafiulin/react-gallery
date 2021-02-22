@@ -1,7 +1,7 @@
 import './UsersList.scss'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsers } from 'app/reducers/users/users';
+import { fetchUsers, toggleLoading } from 'app/reducers/users/users';
 import Loader from 'components/common/Loader/Loader'
 import UserItem from 'components/pages/home/UserItem/UserItem'
 
@@ -12,7 +12,11 @@ function UsersList () {
     useEffect(() => {
         if (!users.length) {
             dispatch(fetchUsers());
+        } else {
+            dispatch(toggleLoading())
         }
+
+        return () => dispatch(toggleLoading()); 
     }, [])
 
     return <>

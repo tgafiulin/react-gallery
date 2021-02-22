@@ -12,13 +12,17 @@ function User () {
     const loading = useSelector(state => state.albums.loading);
 
     useEffect(() => {
-        dispatch(fetchAlbums({
-            dispatch: dispatch,
-            id: id
-        }));
-
+        if (!albumsInfo) {
+            dispatch(fetchAlbums({
+                dispatch: dispatch,
+                id: id
+            }));
+        } else {
+            dispatch(toggleLoading());
+        }
+        
         return () => dispatch(toggleLoading());
-    }, [])
+    }, [albumsInfo])
 
     return <>
         {loading 

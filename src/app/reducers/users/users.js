@@ -14,21 +14,22 @@ const usersSlice = createSlice({
     name: 'users',
     initialState: {
         loading: true,
-        users: []
+        users: JSON.parse(localStorage.getItem("userstate")) || []
     },
     reducers: {
-
+        toggleLoading: (state) => {
+            state.loading = !state.loading;
+        }
     },
     extraReducers: {
-        [fetchUsers.pending]: (state) => {
-            state.loading = true;
-        },
         [fetchUsers.fulfilled]: (state, action) => {
             state.users = action.payload.users;
             state.loading = false;
+            localStorage.setItem('userstate', JSON.stringify(state.users))
         },
     }
 })
 
+export const { toggleLoading } = usersSlice.actions
 export default usersSlice.reducer
 

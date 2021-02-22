@@ -39,12 +39,12 @@ const albumsSlice = createSlice({
     name: 'albums',
     initialState: {
         loading: true,
-        albumsInfo: {},
-        albumsPhotos: {}
+        albumsInfo: JSON.parse(localStorage.getItem("albumsInfo")) || {},
+        albumsPhotos: JSON.parse(localStorage.getItem("albumsPhotos")) || {}
     },
     reducers: {
         toggleLoading: (state) => {
-            state.loading = true;
+            state.loading = !state.loading;
         }
     },
     extraReducers: {
@@ -57,7 +57,6 @@ const albumsSlice = createSlice({
                     title: title,
                     photosLength: photos.length
                 }
-                console.log(albumInfo);
                 if (state.albumsInfo[userId]) {
                     state.albumsInfo[userId].push(albumInfo);
                 } else {
@@ -66,6 +65,9 @@ const albumsSlice = createSlice({
                 state.albumsPhotos[id] = photos;
             })
             state.loading = false;
+
+            localStorage.setItem('albumsInfo', JSON.stringify(state.albumsInfo))
+            localStorage.setItem('albumsPhotos', JSON.stringify(state.albumsPhotos))
         },
     }
 })
