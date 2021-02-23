@@ -1,13 +1,14 @@
+import './Album.scss'
 import { useState } from 'react'
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 import { useSelector } from 'react-redux'
-// import { useEffect } from "react";
 import Photo from 'components/pages/user/Photo/Photo'
 import Modal from 'components/common/Modal/Modal'
-import albums from 'app/reducers/albums/albums'
+import Button from 'components/common/Button/Button'
 
 function Album () {
     const { id } = useParams();
+    let history = useHistory();
     const albumsPhotos = useSelector(state => state.albums.albumsPhotos)[id];
     const [openModal, toggleOpenModal] = useState(false);
     const [currentId, editCurrentId] = useState(albumsPhotos[0].id);
@@ -25,30 +26,40 @@ function Album () {
         }
     }
 
-    return <div>
-    {
-        albumsPhotos.map((photo, index) => 
-            <Photo
-                key={photo.id}
-                id={photo.id}
-                title={photo.title}
-                thumbnailUrl={photo.thumbnailUrl}
-                onClick={() => openImgPopup(index)}
+    return <div className="album">
+        <div className="album__heading">
+            <h1>Albums</h1>
+            <Button 
+                className="button" 
+                value="back"
+                onClick={() => history.goBack()}
             />
-        )
-    }
-    {
-        openModal 
-        ? 
-            <Modal 
-                img={albumsPhotos[currentId]} 
-                closeModal={() => toggleOpenModal(false)} 
-                nextSlide={() => changeSlideToNext(true)}
-                prevSlide={() => changeSlideToNext(false)}
-            /> 
-        : 
-        ''
-    }
+        </div>
+        <div className="album__photos">
+        {
+            albumsPhotos.map((photo, index) => 
+                <Photo
+                    key={photo.id}
+                    id={photo.id}
+                    title={photo.title}
+                    thumbnailUrl={photo.thumbnailUrl}
+                    onClick={() => openImgPopup(index)}
+                />
+            )
+        }
+        </div>
+        {
+            openModal 
+            ? 
+                <Modal 
+                    img={albumsPhotos[currentId]} 
+                    closeModal={() => toggleOpenModal(false)} 
+                    nextSlide={() => changeSlideToNext(true)}
+                    prevSlide={() => changeSlideToNext(false)}
+                /> 
+            : 
+            ''
+        }
     </div>
 }
 
