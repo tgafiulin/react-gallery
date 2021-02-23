@@ -35,18 +35,20 @@ function Album () {
                 onClick={() => history.goBack()}
             />
         </div>
-        <div className="album__photos">
-        {
-            albumsPhotos.map((photo, index) => 
-                <Photo
-                    key={photo.id}
-                    id={photo.id}
-                    title={photo.title}
-                    thumbnailUrl={photo.thumbnailUrl}
-                    onClick={() => openImgPopup(index)}
-                />
-            )
-        }
+        <div className="row">
+            <div className="album__photos">
+            {
+                albumsPhotos.map((photo, index) => 
+                    <Photo
+                        key={photo.id}
+                        id={photo.id}
+                        title={photo.title}
+                        thumbnailUrl={photo.thumbnailUrl}
+                        onClick={() => openImgPopup(index)}
+                    />
+                )
+            }
+            </div>
         </div>
         {
             openModal 

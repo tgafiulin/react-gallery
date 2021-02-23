@@ -1,4 +1,6 @@
 .album {
+    margin: 0 5px; 
+    
     &__heading {
         display: flex;
         justify-content: space-between;
@@ -6,8 +8,8 @@
     }
 
     &__photos {
-        display: grid;
-        grid-gap: 10px;
-        grid-template-columns: repeat(5, 1fr);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
 }

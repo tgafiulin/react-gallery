@@ -12,12 +12,12 @@ code {
     monospace;
 }
 
-.main {
-
-}
-
 .container {
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 15px;
+}
+
+.row {
+  margin: 0 -15px;
 }

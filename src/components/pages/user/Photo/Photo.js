@@ -1,3 +1,5 @@
+import './Photo.scss'
+
 function Photo({id, title, thumbnailUrl, onClick}) {
     return <div className="photo" onClick={onClick}>
         <img src={thumbnailUrl} alt={title} />
