@@ -15,46 +15,10 @@
     outline: none;
     position: relative;
 
-    @media (min-width: 768px) {
-        &:hover {
-            cursor: pointer;
-            background: rgba(30, 255, 188, 1);
-            color: rgba(255, 255, 255, 1);
-        }
-
-        &--red {    
-            &:hover {
-                background: #FF6D1E;
-            }
-        }
-
-        &--blue {    
-            &:hover {
-                background: #007bff;
-            }
-        }
-
-        &--black {    
-            &:hover {
-                background: #343a40;
-            }
-        }
-    }
-
-    @media (max-width: 767px) {
-        padding: 10px 15px;
-    }
-
-    &--red {
-        color: #FF6D1E;
-    }
-
-    &--blue {
-        color: #007bff;
-    }
-
-    &--black {
-        color: #343a40;
+    &:hover {
+        cursor: pointer;
+        background: rgba(30, 255, 188, 1);
+        color: rgba(255, 255, 255, 1);
     }
 }
 
