@@ -68,6 +68,8 @@
     padding: 40px;
     background: #fff;
     z-index: 2;
+    min-width: 600px;
+    min-height: 600px;
 
     &__close {
         position: absolute;

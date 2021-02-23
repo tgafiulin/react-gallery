@@ -1,5 +1,5 @@
 import './Album.scss'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useHistory } from "react-router-dom"
 import { useSelector } from 'react-redux'
 import Photo from 'components/pages/user/Photo/Photo'
@@ -11,7 +11,7 @@ function Album () {
     let history = useHistory();
     const albumsPhotos = useSelector(state => state.albums.albumsPhotos)[id];
     const [openModal, toggleOpenModal] = useState(false);
-    const [currentId, editCurrentId] = useState(albumsPhotos[0].id);
+    const [currentId, editCurrentId] = useState(0);
 
     const openImgPopup = (id) => {
         toggleOpenModal(true);
@@ -23,6 +23,19 @@ function Album () {
             currentId === (albumsPhotos.length - 1) ? editCurrentId(0) : editCurrentId(currentId + 1);
         } else {
             currentId === 0 ? editCurrentId(albumsPhotos.length - 1) : editCurrentId(currentId - 1);
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('keydown', (event) => handleKeyPress(event), {once: true});
+
+    }, [currentId])
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'ArrowRight') {
+            changeSlideToNext(true);
+        } else if (e.key === 'ArrowLeft') {
+            changeSlideToNext(false);
         }
     }
 
