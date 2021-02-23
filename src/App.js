@@ -1,5 +1,6 @@
 import UsersList from 'components/pages/home/UsersList/UsersList'; 
 import User from 'components/pages/user/User/User';
+import Album from 'components/pages/user/Album/Album';
 
 import {
   BrowserRouter as Router,
@@ -18,7 +19,11 @@ function App() {
                       <UsersList />
                     </Route>
                     <Route path="/user/:id">
+                      <h1>Albums</h1>
                       <User />
+                    </Route>
+                    <Route path="/album/:id">
+                      <Album />
                     </Route>
                     <Redirect to="/" />
                   </Switch>
