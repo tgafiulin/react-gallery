@@ -1,0 +1,91 @@
+.button {
+    text-decoration: none;
+    display: inline-block;
+    padding: 15px 30px;
+    overflow: hidden;
+    border: 2px solid;
+    border-bottom-width: 4px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: rgba(30, 255, 188, 1);
+    background: rgba(255, 255, 255, 1);
+    transition: color .3s, background .5s;
+    outline: none;
+    position: relative;
+
+    @media (min-width: 768px) {
+        &:hover {
+            cursor: pointer;
+            background: rgba(30, 255, 188, 1);
+            color: rgba(255, 255, 255, 1);
+        }
+
+        &--red {    
+            &:hover {
+                background: #FF6D1E;
+            }
+        }
+
+        &--blue {    
+            &:hover {
+                background: #007bff;
+            }
+        }
+
+        &--black {    
+            &:hover {
+                background: #343a40;
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        padding: 10px 15px;
+    }
+
+    &--red {
+        color: #FF6D1E;
+    }
+
+    &--blue {
+        color: #007bff;
+    }
+
+    &--black {
+        color: #343a40;
+    }
+}
+
+
+.remove-btn {
+    position: absolute;
+    background: none;
+    outline: none;
+    border: none;
+    top: 50%;
+    right: 50%;
+    width: 20px;
+    height: 20px;
+    font-weight: bold;
+    color: #7C7D7F;
+    font-size: 24px;
+    line-height: 1;
+    transform: translateX(50%);
+
+    &:hover {
+        cursor: pointer;
+        color: red;
+    }
+
+    &:after {
+        content: "\2716";
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        transform: translateY(-50%);
+    }
+}
